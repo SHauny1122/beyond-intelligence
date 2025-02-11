@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sphere - Future of Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .header {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .x-button {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 10;
+        }
+
+        .x-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .x-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.2);
+        }
+
+        .x-icon {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .coming-soon {
+            font-size: 0.9rem;
+            color: #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .instructions {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .glitch-letter {
+            display: inline-block;
+            position: relative;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: none;
+        }
+
+        @keyframes glitchFlicker {
+            0% { opacity: 1; transform: scale(1); }
+            25% { opacity: 0.9; transform: scale(1.1); }
+            30% { opacity: 1; transform: scale(1); }
+            35% { opacity: 0.9; transform: scale(1.1); }
+            40% { opacity: 1; transform: scale(1); }
+        }
+
+        .glitching {
+            animation: glitchFlicker 0.2s ease;
+            background: #ff00ff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title-container {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .title-line {
+            font-size: 4.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+            position: relative;
+            display: block;
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .title-line {
+                font-size: 3rem;
+                line-height: 1.2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+                line-height: 1.2;
+            }
+
+            .x-button {
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .x-link {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="x-button">
+        <a href="https://x.com/poweroverthink" target="_blank" class="x-link">
+            <svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+            </svg>
+            Stay Tuned
+        </a>
+    </div>
+    <div class="content">
+        <div class="header">
+            <div id="glitchText" class="title-container">
+                <h1 class="title-line">Beyond</h1>
+                <h1 class="title-line">Intelligence</h1>
+            </div>
+        </div>
+    </div>
+    <div class="instructions">
+        Interact with the quantum core to glimpse the future
+        <p class="coming-soon">Coming Soon</p>
+    </div>
+    <script type="module" src="/main.js"></script>
+    <script>
+        const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?0123456789αβΓδζηθλξπΣφΨω¥€₿';
+        
+        function setupGlitchText() {
+            const container = document.getElementById('glitchText');
+            const titleLines = container.getElementsByClassName('title-line');
+            
+            Array.from(titleLines).forEach(line => {
+                const text = line.textContent;
+                line.innerHTML = text.split('').map(letter => 
+                    `<span class="glitch-letter">${letter}</span>`
+                ).join('');
+            });
+            
+            const letters = container.getElementsByClassName('glitch-letter');
+            
+            function glitchRandomLetter() {
+                const numGlitches = Math.floor(Math.random() * 2) + 1;
+                
+                for (let i = 0; i < numGlitches; i++) {
+                    const randomIndex = Math.floor(Math.random() * letters.length);
+                    const letterSpan = letters[randomIndex];
+                    const originalLetter = letterSpan.textContent;
+                    
+                    letterSpan.classList.add('glitching');
+                    letterSpan.textContent = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                    
+                    setTimeout(() => {
+                        letterSpan.textContent = originalLetter;
+                        letterSpan.classList.remove('glitching');
+                    }, 150);
+                }
+            }
+            
+            setInterval(glitchRandomLetter, 3000);
+            glitchRandomLetter();
+        }
+
+        document.addEventListener('DOMContentLoaded', setupGlitchText);
+    </script>
+</body>
+</html>
